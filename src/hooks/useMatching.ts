@@ -47,7 +47,7 @@ export const useMatching = () => {
         return "あなたは概念ですか？";
       case "yes": {
         const firstId = entries[0]?.id ?? 0;
-        return `∞ - ${firstId.toLocaleString()}件の概念とマッチングしました。`;
+        return `${firstId.toLocaleString()}件目以降∞件の概念とマッチングしました。`;
       }
       default:
         return "概念以外は利用することができません。";
