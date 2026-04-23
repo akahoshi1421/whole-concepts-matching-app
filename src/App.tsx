@@ -9,24 +9,27 @@ function App() {
 
       <hr />
 
-      <p>inspired by</p>
-      <ul>
-        <li>
-          <a href="https://uec-matching.mimifuwacc.workers.dev/">
-            電通大生専用マッチングアプリ
-          </a>
-        </li>
-        <li>
-          <a href="https://human-matching.vercel.app/">
-            人類専用マッチングアプリ
-          </a>
-        </li>
-        <li>
-          <a href="https://horicun.moo.jp/contents/haiku/">
-            全俳句データベース
-          </a>
-        </li>
-      </ul>
+      <footer>
+        <p>inspired by</p>
+        <ul>
+          <li>
+            <a href="https://uec-matching.mimifuwacc.workers.dev/">
+              電通大生専用マッチングアプリ
+            </a>
+          </li>
+          <li>
+            <a href="https://human-matching.vercel.app/">
+              人類専用マッチングアプリ
+            </a>
+          </li>
+          <li>
+            <a href="https://horicun.moo.jp/contents/haiku/">
+              全俳句データベース
+            </a>
+          </li>
+        </ul>
+        <p>&copy; {new Date().getFullYear()} akahoshi1421</p>
+      </footer>
     </>
   );
 }

@@ -46,8 +46,10 @@ export const useMatching = () => {
     switch (wholeConceptsPattern) {
       case "pending":
         return "あなたは概念ですか？";
-      case "yes":
-        return "概念とマッチングしました。";
+      case "yes": {
+        const firstId = entries[0]?.id ?? 0;
+        return `∞ - ${firstId.toLocaleString()}件の概念とマッチングしました。`;
+      }
       default:
         return "概念以外は利用することができません。";
     }
