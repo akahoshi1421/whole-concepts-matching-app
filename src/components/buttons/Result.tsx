@@ -19,12 +19,12 @@ export function Result() {
           <tr>
             <th style={{ width: "80px", border: "1px solid" }}>No.</th>
             <th style={{ border: "1px solid" }}>概念</th>
-            <th style={{ width: "120px", border: "1px solid" }}>ID</th>
+            <th style={{ width: "300px", border: "1px solid" }}>ID</th>
           </tr>
         </thead>
         <tbody>
           {entries.map((entry) => (
-            <tr key={entry.id}>
+            <tr key={entry.id.toString()}>
               <td style={{ border: "1px solid" }}>{entry.index.toLocaleString()}</td>
               <td
                 style={{
@@ -36,7 +36,16 @@ export function Result() {
               >
                 {entry.unicodeString}
               </td>
-              <td style={{ border: "1px solid" }}>{entry.id.toLocaleString()}</td>
+              <td
+                style={{
+                  maxWidth: "300px",
+                  overflowX: "scroll",
+                  whiteSpace: "nowrap",
+                  border: "1px solid",
+                }}
+              >
+                {entry.id.toLocaleString()}
+              </td>
             </tr>
           ))}
         </tbody>

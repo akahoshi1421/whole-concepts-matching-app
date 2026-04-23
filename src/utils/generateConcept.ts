@@ -1,17 +1,29 @@
 const MAX_CODEPOINT = 0x10ffff;
-const BASE = MAX_CODEPOINT + 1;
+const BASE = BigInt(MAX_CODEPOINT + 1);
 const BATCH_SIZE = 20;
 
 export type ConceptEntry = {
   index: number;
   codepoints: number[];
   unicodeString: string;
-  id: number;
+  id: bigint;
 };
 
-function computeId(codepoints: number[]): number {
-  const sum = codepoints.reduce((a, b) => a + b, 0);
-  return sum + (codepoints.length - 1) * BASE;
+function computeId(codepoints: number[]): bigint {
+  const n = codepoints.length;
+  // offset = B + B² + ... + B^(n-1)
+  let offset = 0n;
+  let power = BASE;
+  for (let i = 1; i < n; i++) {
+    offset += power;
+    power *= BASE;
+  }
+  // positional = c₀ * B^(n-1) + c₁ * B^(n-2) + ... + cₙ₋₁
+  let positional = 0n;
+  for (const cp of codepoints) {
+    positional = positional * BASE + BigInt(cp);
+  }
+  return offset + positional;
 }
 
 function incrementConcept(codepoints: number[]): number[] {
@@ -30,10 +42,10 @@ function incrementConcept(codepoints: number[]): number[] {
 }
 
 export function generateRandomConcept(): number[] {
-  const length = Math.floor(Math.random() * 1000) + 1;
+  const length = Math.floor(Math.random() * 100) + 1;
   const codepoints: number[] = [];
   for (let i = 0; i < length; i++) {
-    let cp = Math.floor(Math.random() * BASE);
+    let cp = Math.floor(Math.random() * (MAX_CODEPOINT + 1));
     if (cp >= 0xd800 && cp <= 0xdfff) {
       cp = 0xe000;
     }
