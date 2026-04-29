@@ -28,6 +28,11 @@ function App() {
             </a>
           </li>
         </ul>
+        <p>
+          <a href="https://github.com/akahoshi1421/whole-concepts-matching-app">
+            GitHub
+          </a>
+        </p>
         <p>&copy; {new Date().getFullYear()} akahoshi1421</p>
       </footer>
     </>
